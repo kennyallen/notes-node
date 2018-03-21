@@ -1,12 +1,26 @@
 console.log('Starting app.');
 
 const fs = require('fs');
-const os = require('os');
-const notes = require('./notes.js');
+const _ = require('lodash');
+const yargs = require('yargs');
 
-var adding = notes.add();
-console.log(adding);
+const notes = require('./notes.js')
 
-// var user = os.userInfo();
+const argv = yargs.argv;
+var command = process.argv[2];
+console.log("Command: ", command);
+console.log('Process', process.argv);
+console.log('Yargs', argv);
 
-// fs.appendFileSync('greetings.txt', `Hello ${user.username}! You are ${notes.age}. `);
+
+if (command === 'add') {
+	console.log('Adding new note.');
+} else if (command === 'list'){
+	console.log('Listing all notes');
+} else if (command === 'read'){
+	console.log('Fetching note...')
+} else if (command === 'remove'){
+	console.log('Removing note...')
+} else {
+	console.log('Command not recognzed.')
+}
